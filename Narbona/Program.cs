@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Narbona.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<PeopleContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=NarbonaDatabase;Trusted_Connection=true"));
 
 var app = builder.Build();
 
