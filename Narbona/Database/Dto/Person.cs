@@ -12,7 +12,7 @@ namespace Narbona.Database.Dto
 
         [Required]
         [MaxLength(50)]
-        public string Lastname { get; set; }
+        public string LastName { get; set; }
 
         [Required]
         public string Description { get; set; }

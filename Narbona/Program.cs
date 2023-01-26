@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Narbona.Database;
+using Narbona.Services;
+using Narbona.Services.Interfaces;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-
-builder.Services.AddDbContext<PeopleContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=NarbonaDatabase;Trusted_Connection=true"));
+AddServices(builder.Services);
 
 var app = builder.Build();
 
@@ -30,3 +31,13 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void AddServices(IServiceCollection services)
+{
+    services.AddControllersWithViews();
+
+    services.AddAutoMapper(Assembly.GetExecutingAssembly());
+    services.AddDbContext<PeopleContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=NarbonaDatabase;Trusted_Connection=true"));
+
+    services.AddScoped<IPersonService, PersonService>();
+}
