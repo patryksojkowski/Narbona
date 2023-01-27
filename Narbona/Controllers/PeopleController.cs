@@ -39,9 +39,21 @@ namespace Narbona.Controllers
             return Ok();
         }
 
-        public IActionResult Read()
+        public ActionResult<IEnumerable<PersonViewModel>> Read()
         {
-            return View();
+            IEnumerable<PersonViewModel> result;
+            try
+            {
+                var people = personService.ReadAll();
+
+                result = mapper.Map<IEnumerable<PersonViewModel>>(people);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return new OkObjectResult(result);
         }
 
         public IActionResult Update()

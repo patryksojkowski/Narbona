@@ -2,8 +2,9 @@
 
 namespace Narbona.Services.Interfaces
 {
-  public interface IPersonService
-  {
-    void Add(Person person);
-  }
+    public interface IPersonService
+    {
+        void Add(Person person);
+        IEnumerable<Person> ReadAll();
+    }
 }

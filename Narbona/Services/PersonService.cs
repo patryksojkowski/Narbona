@@ -21,6 +21,16 @@ namespace Narbona.Services
             var personDto = mapper.Map<Database.Dto.Person>(person);
 
             peopleContext.People.Add(personDto);
+            peopleContext.SaveChanges();
+        }
+
+        public IEnumerable<Person> ReadAll()
+        {
+            var peopleDtos = peopleContext.People;
+
+            var result = mapper.ProjectTo<Person>(peopleDtos);
+
+            return result;
         }
     }
 }
