@@ -56,9 +56,20 @@ namespace Narbona.Controllers
             return new OkObjectResult(result);
         }
 
-        public IActionResult Update()
+        public IActionResult Update(PersonViewModel personViewModel)
         {
-            return View();
+            try
+            {
+                var personModel = mapper.Map<PersonModel>(personViewModel);
+
+                personService.Update(personModel);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
         }
 
         public IActionResult Delete()

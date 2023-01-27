@@ -6,5 +6,6 @@ namespace Narbona.Services.Interfaces
     {
         void Add(Person person);
         IEnumerable<Person> ReadAll();
+        void Update(Person person);
     }
 }
