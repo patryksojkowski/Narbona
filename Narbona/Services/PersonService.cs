@@ -36,22 +36,35 @@ namespace Narbona.Services
 
         public void Update(Person person)
         {
-            var currentPerson = peopleContext.People
+            var personDto = peopleContext.People
                 .Include(p => p.Emails)
                 .FirstOrDefault(p => p.Id == person.Id);
 
-            if (currentPerson == null)
+            if (personDto == null)
             {
                 throw new ArgumentOutOfRangeException(nameof(person.Id));
             }
 
             var updated = mapper.Map<Database.Dto.Person>(person);
 
-            currentPerson.Name = updated.Name;
-            currentPerson.LastName = updated.LastName;
-            currentPerson.Description = updated.Description;
-            currentPerson.Emails = updated.Emails;
+            personDto.Name = updated.Name;
+            personDto.LastName = updated.LastName;
+            personDto.Description = updated.Description;
+            personDto.Emails = updated.Emails;
 
+            peopleContext.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var personDto = peopleContext.People.FirstOrDefault(p => p.Id == id);
+
+            if (personDto == null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
+            peopleContext.People.Remove(personDto);
             peopleContext.SaveChanges();
         }
     }

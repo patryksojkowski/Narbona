@@ -72,9 +72,18 @@ namespace Narbona.Controllers
             return Ok();
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(int personId)
         {
-            return View();
+            try
+            {
+                personService.Delete(personId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
         }
     }
 }
