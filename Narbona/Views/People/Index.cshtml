@@ -3,12 +3,10 @@
 <!-- Button trigger modal -->
 <div style="display:flex;
   justify-content: flex-end;">
-    <button type="button" id="button1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Launch demo modal
+    <button type="button" id="button1" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+        Add
     </button>
 </div>
-
-
 
 <table class="table table-striped table-hover">
     <thead>
@@ -22,17 +20,21 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var person in Model)
+        @foreach (var person in Model)
         {
             <tr>
                 <th scope="row">@person.Id</th>
                 <td>@person.Name</td>
                 <td>@person.LastName</td>
                 <td>@person.Description</td>
-                <td>@string.Join("\n", person.Emails)</td>
+                <td>@person.Emails.FirstOrDefault()</td>
                 <td>
-                    <button type="button" class="btn btn-primary table-edit-button" data-bs-toggle="modal" data-bs-target="#myModal">update</button>
-                    <button type="button" class="btn btn-primary table-edit-button">remove</button>
+                    <button type="button" class="btn btn-sm btn-outline-dark table-edit-button" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <i class="bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-dark table-edit-button">
+                        <i class="bi-x-square"></i>
+                    </button>
                 </td>
             </tr>
         }

@@ -25,3 +25,7 @@ tr:hover .table-edit-button {
 .table-edit-button {
     opacity: 0
 }
+
+.btn:focus {
+    box-shadow: none !important;
+}
