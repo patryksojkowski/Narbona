@@ -9,5 +9,7 @@ namespace Narbona.Database.Dto
         [Required]
         [MaxLength(50)]
         public string Value { get; set; }
+
+        public Person Person { get; set; }
     }
 }

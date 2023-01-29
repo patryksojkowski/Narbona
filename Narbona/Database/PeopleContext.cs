@@ -14,6 +14,14 @@ namespace Narbona.Database
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Email>()
+                .HasOne(e => e.Person)
+                .WithMany(p => p.Emails)
+                .IsRequired();
+        }
+
         public virtual DbSet<Person> People { get; set; }
     }
 }
