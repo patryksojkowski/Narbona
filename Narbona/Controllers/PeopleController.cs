@@ -20,7 +20,18 @@ namespace Narbona.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<PersonViewModel> people;
+
+            try
+            {
+                people = Read();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return View(people);
         }
 
         public IActionResult Create(PersonViewModel personViewModel)
@@ -39,7 +50,7 @@ namespace Narbona.Controllers
             return Ok();
         }
 
-        public ActionResult<IEnumerable<PersonViewModel>> Read()
+        public IEnumerable<PersonViewModel> Read()
         {
             IEnumerable<PersonViewModel> result;
             try
@@ -48,12 +59,12 @@ namespace Narbona.Controllers
 
                 result = mapper.Map<IEnumerable<PersonViewModel>>(people);
             }
-            catch (Exception ex)
+            catch
             {
-                return BadRequest(ex.Message);
+                throw;
             }
 
-            return new OkObjectResult(result);
+            return result;
         }
 
         public IActionResult Update(PersonViewModel personViewModel)
