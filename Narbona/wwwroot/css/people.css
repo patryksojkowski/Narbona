@@ -1,0 +1,12 @@
+﻿tr:hover .table-row-button {
+    opacity: 1;
+}
+
+.table-row-button {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}

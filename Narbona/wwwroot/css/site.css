@@ -16,16 +16,3 @@ html {
 body {
   margin-bottom: 60px;
 }
-
-
-tr:hover .table-edit-button {
-    opacity: 1;
-}
-
-.table-edit-button {
-    opacity: 0
-}
-
-.btn:focus {
-    box-shadow: none !important;
-}

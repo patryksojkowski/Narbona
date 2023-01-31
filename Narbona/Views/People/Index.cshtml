@@ -22,19 +22,15 @@
     <tbody>
         @foreach (var person in Model)
         {
-            <tr>
+            <tr id="tr-person-@person.Id">
                 <th scope="row">@person.Id</th>
                 <td>@person.Name</td>
                 <td>@person.LastName</td>
                 <td>@person.Description</td>
                 <td>@person.Emails.FirstOrDefault()</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-outline-dark table-edit-button" data-bs-toggle="modal" data-bs-target="#myModal">
-                        <i class="bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-dark table-edit-button">
-                        <i class="bi-x-square"></i>
-                    </button>
+                    <span type="button" class="btn btn-sm btn-outline-dark bi-pencil-square table-row-button" data-bs-toggle="modal" data-bs-target="#myModal" title="Edit"></span>
+                    <span type="button" data-person-id="@person.Id" class="btn btn-sm btn-outline-dark bi-x-square table-row-button table-remove-button" title="Remove"></span>
                 </td>
             </tr>
         }
